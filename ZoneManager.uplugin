@@ -1,0 +1,28 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"EngineVersion": "5.8.0",
+	"FriendlyName": "ZoneManager - Data-Driven Trigger Zones",
+	"Description": "Define priority-ranked trigger zones from one or many box volumes and drive on-screen titles, sequential music playlists, entrance stingers and looping ambience entirely from a DataTable.",
+	"Category": "Code Plugins",
+	"CreatedBy": "Simulated Flow",
+	"CreatedByURL": "https://github.com/SimulatedFlow",
+	"DocsURL": "https://github.com/SimulatedFlow/ue-plugin-ZoneManager",
+	"MarketplaceURL": "",
+	"SupportURL": "mailto:simulatedflow@gmail.com",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "ZoneManager",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		}
+	]
+}
