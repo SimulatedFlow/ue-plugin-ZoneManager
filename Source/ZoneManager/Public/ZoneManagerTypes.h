@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
-#include "Fonts/SlateFontInfo.h"
 #include "ZoneManagerTypes.generated.h"
 
 class USoundBase;
@@ -47,9 +46,30 @@ struct FZoneDefinitionRow : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Zone|Title")
 	FText Subtitle;
 
-	/** Font used for the title text (selectable per row). Subtitle uses the same font at a smaller size. */
+	/**
+	 * Font asset for the on-screen text (a UFont). Leave empty to use the engine default font.
+	 *
+	 * NOTE — why this is a plain font asset + size and NOT an FSlateFontInfo (fixed 2026-08-02):
+	 * FSlateFontInfo ships a custom property-type customization (FSlateFontInfoStructCustomization).
+	 * Inside a DataTable row that customization builds a custom detail node in the row editor, and
+	 * the DataTable editor cannot service it — the editor fires
+	 * `Ensure condition failed: bTickable` in FDetailItemNode::Tick and takes the editor down when
+	 * a row is added. Fab's technical review hit exactly this ("When you try to add after the Data
+	 * Table is created, the project crashes, making it impossible to follow the documentation")
+	 * and our own editor log shows the same ensure 0.6 s after opening DT_ZoneDefinitions.
+	 * A UFont reference plus two integers carries the same information, is plain data, and the
+	 * FSlateFontInfo is assembled at display time in SZoneBanner where it belongs.
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Zone|Title")
-	FSlateFontInfo Font;
+	TObjectPtr<UObject> TitleFontAsset = nullptr;
+
+	/** Point size of the title text. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Zone|Title", meta = (ClampMin = "1", UIMax = "128"))
+	int32 TitleFontSize = 40;
+
+	/** Point size of the subtitle text. 0 = derive from the title size (55 %). */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Zone|Title", meta = (ClampMin = "0", UIMax = "128"))
+	int32 SubtitleFontSize = 0;
 
 	/** Color of the on-screen title & subtitle text. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Zone|Title")

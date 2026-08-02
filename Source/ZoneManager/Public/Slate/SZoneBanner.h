@@ -21,6 +21,8 @@ public:
 		SLATE_ARGUMENT(FText, Title)
 		SLATE_ARGUMENT(FText, Subtitle)
 		SLATE_ARGUMENT(FSlateFontInfo, Font)
+		/** Optional; leave unset to derive the subtitle from the title size (55 %). */
+		SLATE_ARGUMENT(FSlateFontInfo, SubtitleFont)
 		SLATE_ARGUMENT(FLinearColor, TextColor)
 	SLATE_END_ARGS()
 

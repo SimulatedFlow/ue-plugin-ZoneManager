@@ -20,9 +20,14 @@ void SZoneBanner::Construct(const FArguments& InArgs)
 		TitleFont.Size = 40;
 	}
 
-	// Subtitle uses the same typeface at roughly 55% of the title size.
-	FSlateFontInfo SubtitleFont = TitleFont;
-	SubtitleFont.Size = FMath::Max(10, FMath::RoundToInt(TitleFont.Size * 0.55f));
+	// Subtitle: use the explicitly supplied font when there is one, otherwise the same
+	// typeface at roughly 55 % of the title size.
+	FSlateFontInfo SubtitleFont = InArgs._SubtitleFont;
+	if (!SubtitleFont.HasValidFont() || SubtitleFont.Size <= 0)
+	{
+		SubtitleFont = TitleFont;
+		SubtitleFont.Size = FMath::Max(10, FMath::RoundToInt(TitleFont.Size * 0.55f));
+	}
 
 	const FLinearColor TextColor = InArgs._TextColor;
 	const bool bHasSubtitle = !InArgs._Subtitle.IsEmpty();

@@ -12,6 +12,7 @@
 #include "Engine/World.h"
 #include "Engine/GameViewportClient.h"
 #include "Widgets/Layout/SBox.h"
+#include "Styling/CoreStyle.h"   // FCoreStyle::GetDefaultFontStyle fuer den Banner-Fallback
 #include "TimerManager.h"
 
 bool UZoneManagerSubsystem::ShouldCreateSubsystem(UObject* Outer) const
@@ -337,10 +338,27 @@ void UZoneManagerSubsystem::ShowBanner(const FZoneDefinitionRow& Row)
 
 	HideBanner();
 
+	// Die Schrift wird ERST HIER zusammengesetzt, nicht in der DataTable-Zeile abgelegt:
+	// ein FSlateFontInfo als Zeilenfeld bringt den DataTable-Editor beim Zeilen-Hinzufuegen
+	// zu Fall (siehe Kommentar an FZoneDefinitionRow::TitleFontAsset). Die Zeile traegt nur
+	// noch Font-Asset + Groessen — reine Daten.
+	const int32 TitleSize = FMath::Max(1, Row.TitleFontSize);
+	const int32 SubSize = Row.SubtitleFontSize > 0
+		? Row.SubtitleFontSize
+		: FMath::Max(10, FMath::RoundToInt(TitleSize * 0.55f));
+
+	FSlateFontInfo TitleFont = Row.TitleFontAsset
+		? FSlateFontInfo(Row.TitleFontAsset, TitleSize)
+		: FCoreStyle::GetDefaultFontStyle("Bold", TitleSize);
+	FSlateFontInfo SubtitleFont = Row.TitleFontAsset
+		? FSlateFontInfo(Row.TitleFontAsset, SubSize)
+		: FCoreStyle::GetDefaultFontStyle("Bold", SubSize);
+
 	BannerWidget = SNew(SZoneBanner)
 		.Title(Row.Title)
 		.Subtitle(Row.Subtitle)
-		.Font(Row.Font)
+		.Font(TitleFont)
+		.SubtitleFont(SubtitleFont)
 		.TextColor(Row.TextColor);
 
 	BannerContainer =

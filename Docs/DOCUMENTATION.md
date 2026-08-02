@@ -56,7 +56,9 @@ titles, music and sounds, driven by the sample `DT_ZoneDefinitions` table.
 | Identity | `Priority` | `int32` | **Higher wins** when zones overlap. |
 | Title | `Title` | `FText` | Large on-screen title on entry. |
 | Title | `Subtitle` | `FText` | Smaller line under the title. |
-| Title | `Font` | `FSlateFontInfo` | Font for the on-screen text (per row). |
+| Title | `TitleFontAsset` | `UFont` | Font for the on-screen text (per row). Leave empty for the engine default. |
+| Title | `TitleFontSize` | `int32` | Point size of the title. |
+| Title | `SubtitleFontSize` | `int32` | Point size of the subtitle. `0` = 55 % of the title size. |
 | Title | `TextColor` | `FLinearColor` | Title & subtitle color. |
 | Title | `BannerDisplaySeconds` | `float` | Seconds the banner stays (0 = until the zone changes). |
 | Audio | `MusicTracks` | `TArray<USoundBase*>` | Played **sequentially**; the sequence **loops** while inside. |
