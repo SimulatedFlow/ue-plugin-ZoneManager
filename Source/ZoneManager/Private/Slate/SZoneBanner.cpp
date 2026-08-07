@@ -1,4 +1,4 @@
-// Copyright 2026 Silvan Teufel All Rights Reserved.
+// Copyright 2026 Simulated Flow All Rights Reserved.
 
 #include "Slate/SZoneBanner.h"
 #include "Widgets/Text/STextBlock.h"
