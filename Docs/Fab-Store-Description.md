@@ -92,6 +92,6 @@ Open World - Framework - C++
 **Supported Target Build Platforms:** Windows
 **Supported Engine Versions:** 5.8
 **Documentation:** https://github.com/SimulatedFlow/ue-plugin-ZoneManager
-**Support:** simulatedflow@gmail.com
+**Support:** teufelsilvan@gmail.com
 
-*ZoneManager - (c) 2026 Simulated Flow. All rights reserved.*
+*ZoneManager - (c) 2026 Silvan Teufel. All rights reserved.*

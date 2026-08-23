@@ -1,4 +1,4 @@
-// Copyright 2026 Simulated Flow All Rights Reserved.
+// Copyright 2026 Silvan Teufel All Rights Reserved.
 
 #include "ZoneManager.h"
 #include "ZoneManagerLog.h"

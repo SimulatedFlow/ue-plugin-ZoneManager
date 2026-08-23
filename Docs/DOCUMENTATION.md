@@ -111,4 +111,4 @@ if (UZoneManagerSubsystem* Zones = GetWorld()->GetSubsystem<UZoneManagerSubsyste
 - Client-side only (no replication needed); works across Windows/macOS/Linux/mobile/console since it
   uses only cross-platform engine modules.
 
-*© 2026 Simulated Flow. All rights reserved. Support: simulatedflow@gmail.com*
+*© 2026 Silvan Teufel. All rights reserved. Support: teufelsilvan@gmail.com*
