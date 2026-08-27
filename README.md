@@ -6,8 +6,9 @@ sequential music playlists, entrance stingers and looping ambience — all autho
 
 Supports **Unreal Engine 5.8**. Full C++ source included.
 
-See `Docs/DOCUMENTATION.md` for installation, quick start and the full API.
+Documentation, free and without an account: <https://wiki.teufel-engineering.com/en/ZoneManager/documentation> — installation, quick start and the full API.
 
+The same manual ships with the plugin as `Docs/DOCUMENTATION.md`.
 - **Support:** teufelsilvan@gmail.com
 - **Version:** 1.0.0
 
